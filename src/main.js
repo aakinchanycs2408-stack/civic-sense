@@ -589,17 +589,25 @@ Cite official sources where possible (Election Commission of India — eci.gov.i
 Keep answers short, clear, and actionable. If a question is not about Indian elections, politely redirect.`;
 
 function ChatAssistant() {
+  let section = document.getElementById('assistant-section');
+  if (!section) {
+    section = document.createElement('section');
+    section.id = 'assistant-section';
+    section.className = 'assistant-section';
+    document.body.appendChild(section);
+  }
+
   let panel = document.getElementById('chat-panel');
   if (!panel) {
     panel = document.createElement('div');
     panel.id = 'chat-panel';
     panel.className = 'chat-panel';
-    document.body.appendChild(panel);
+    section.appendChild(panel);
   }
   panel.innerHTML = '';
 
   const state = {
-    apiKey: 'AIzaSyDD-l6uUpPivhEqJPUjwKDjo-oFEF8MTJU', // <-- Replace this with your actual API key
+    apiKey: 'YOUR_GEMINI_API_KEY_HERE', // <-- Replace this with your actual API key
 
     messages: [
       { role: 'bot', text: 'Namaste! I’m your Civic Sense assistant. Ask me anything about voting in India — registration, Voter ID, polling booth, or election day.' },
