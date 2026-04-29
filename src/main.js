@@ -84,7 +84,12 @@ function render() {
 }
 
 function openDetailModal(step) {
-  const root = document.getElementById('modal-root');
+  let root = document.getElementById('modal-root');
+  if (!root) {
+    root = document.createElement('div');
+    root.id = 'modal-root';
+    document.body.appendChild(root);
+  }
   root.innerHTML = `
     <div class="modal-backdrop" id="backdrop">
       <div class="modal" role="dialog" aria-modal="true">
@@ -142,7 +147,7 @@ ChatAssistant();
 const chatPanel = document.getElementById('chat-panel');
 const assistantSection = document.getElementById('assistant-section');
 function toggleChat() {
-  if (assistantSection) {
+  if (assistantSection && chatPanel) {
     assistantSection.scrollIntoView({ behavior: 'smooth' });
     const input = chatPanel.querySelector('input');
     if (input) setTimeout(() => input.focus(), 500);
@@ -150,7 +155,8 @@ function toggleChat() {
 }
 const fab = document.getElementById('chat-fab');
 if (fab) fab.addEventListener('click', toggleChat);
-document.getElementById('open-chat-btn').addEventListener('click', toggleChat);
+const openChatBtn = document.getElementById('open-chat-btn');
+if (openChatBtn) openChatBtn.addEventListener('click', toggleChat);
 
 // ---- boot ----
 render();

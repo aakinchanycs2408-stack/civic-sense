@@ -1,52 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Civic Sense — Your Personal Guide to Voting in India</title>
-  <meta name="description" content="A personalized, step-by-step assistant that guides Indian voters through registration, voter ID, and election day with official resources and AI help." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/styles/main.css?v=2" />
+  <title>Civic Sense</title>
+  <link rel="stylesheet" href="/src/styles/main.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true">
-        <span class="dot saffron"></span>
-        <span class="dot white"></span>
-        <span class="dot green"></span>
-      </div>
-      <div class="brand-text">
-        <strong>Civic Sense</strong>
-        <span>Voting Guide · India</span>
-      </div>
-    </div>
-    <nav class="topnav">
-      <a href="#roadmap-section">Roadmap</a>
-      <a href="#scenarios-section">Scenarios</a>
-      <button id="open-chat-btn" class="btn-primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 4px 14px rgba(14,27,51,0.2); border: 2px solid transparent; animation: pulseBorder 2s infinite;">✨ Ask Assistant</button>
-    </nav>
-  </header>
 
-  <main id="app">
-    <!-- Components rendered here by main.js -->
-  </main>
+  <div id="app"></div>
 
-  <section class="assistant-section" id="assistant-section">
-    <aside id="chat-panel" class="chat-panel">
-      <!-- ChatAssistant renders here -->
-    </aside>
-  </section>
+  <script type="module" src="/src/main.js"></script>
 
-  <!-- Step detail modal -->
-  <div id="modal-root"></div>
-
-  <footer class="footer">
-    <p>Civic Sense · Built for Indian voters · Always verify details on official government portals.</p>
-  </footer>
-
-  <script type="module" src="src/main.js"></script>
 </body>
 </html>

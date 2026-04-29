@@ -2,17 +2,17 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy package.json first for caching
+# Copy package.json
 COPY package.json ./
 
-# Install dependencies
+# Run npm install
 RUN npm install
 
-# Copy the rest of the application files
+# Copy all files
 COPY . .
 
 # Expose port 8080
 EXPOSE 8080
 
-# Start the application
+# Run npm start
 CMD ["npm", "start"]
