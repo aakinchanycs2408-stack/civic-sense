@@ -5,13 +5,13 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Serve static files
-app.use(express.static(path.join(__dirname)));
+app.use("/src", express.static(path.join(__dirname, "src")));
 
-// Only fallback for non-file routes
-app.get("*", (req, res, next) => {
-  if (req.path.startsWith("/src") || req.path.includes(".")) {
-    return next();
-  }
+// Serve root files
+app.use(express.static(__dirname));
+
+// Fallback only for non-file routes
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
