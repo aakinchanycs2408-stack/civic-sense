@@ -1,4 +1,4 @@
-export function Hero({ onStart }) {
+export default function Hero({ onStart }) {
   const el = document.createElement('section');
   el.className = 'hero reveal';
   el.innerHTML = `

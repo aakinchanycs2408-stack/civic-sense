@@ -1,6 +1,6 @@
 import { ONBOARDING_QUESTIONS, STATES } from '../utils/constants.js';
 
-export function OnboardingForm({ initial = {}, onComplete }) {
+export default function OnboardingForm({ initial = {}, onComplete }) {
   const el = document.createElement('section');
   el.className = 'block reveal';
   el.id = 'onboarding-section';

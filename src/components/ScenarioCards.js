@@ -1,6 +1,6 @@
 import { SCENARIOS } from '../utils/constants.js';
 
-export function ScenarioCards({ onPick }) {
+export default function ScenarioCards({ onPick }) {
   const el = document.createElement('section');
   el.className = 'block reveal';
   el.id = 'scenarios-section';

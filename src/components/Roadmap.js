@@ -1,8 +1,8 @@
-import { StepCard } from './StepCard.js';
+import StepCard from './StepCard.js';
 import { readinessPercent } from '../logic/roadmapGenerator.js';
 import { ALERTS } from '../utils/constants.js';
 
-export function Roadmap({ steps, user, onToggle, onOpenDetail, onReset }) {
+export default function Roadmap({ steps, user, onToggle, onOpenDetail, onReset }) {
   const el = document.createElement('section');
   el.className = 'block reveal';
   el.id = 'roadmap-section';

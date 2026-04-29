@@ -1,8 +1,8 @@
-import { Hero } from './components/Hero.js';
-import { OnboardingForm } from './components/OnboardingForm.js';
-import { ScenarioCards } from './components/ScenarioCards.js';
-import { Roadmap } from './components/Roadmap.js';
-import { ChatAssistant } from './components/ChatAssistant.js';
+import Hero from './components/Hero.js';
+import OnboardingForm from './components/OnboardingForm.js';
+import ScenarioCards from './components/ScenarioCards.js';
+import Roadmap from './components/Roadmap.js';
+import ChatAssistant from './components/ChatAssistant.js';
 import { generateRoadmap, applyProgress } from './logic/roadmapGenerator.js';
 import { STORAGE_KEYS } from './utils/constants.js';
 

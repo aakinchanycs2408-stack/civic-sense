@@ -1,4 +1,4 @@
-export function StepCard({ step, index, onToggle, onOpenDetail }) {
+export default function StepCard({ step, index, onToggle, onOpenDetail }) {
   const el = document.createElement('div');
   el.className = `step-card ${step.status} reveal`;
   el.style.animationDelay = `${index * 60}ms`;
