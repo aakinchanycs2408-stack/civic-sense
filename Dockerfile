@@ -1,7 +1,18 @@
-FROM nginx:alpine
+FROM node:18-alpine
 
-COPY . /usr/share/nginx/html
+WORKDIR /app
 
-EXPOSE 80
+# Copy package.json first for caching
+COPY package.json ./
 
-CMD ["nginx", "-g", "daemon off;"]
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application files
+COPY . .
+
+# Expose port 8080
+EXPOSE 8080
+
+# Start the application
+CMD ["npm", "start"]
