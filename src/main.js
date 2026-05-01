@@ -607,8 +607,6 @@ function ChatAssistant() {
   panel.innerHTML = '';
 
   const state = {
-    apiKey: 'YOUR_GEMINI_API_KEY_HERE', // <-- Replace this with your actual API key
-
     messages: [
       { role: 'bot', text: 'Namaste! I’m your Civic Sense assistant. Ask me anything about voting in India — registration, Voter ID, polling booth, or election day.' },
     ],
@@ -667,12 +665,6 @@ function ChatAssistant() {
   async function sendMessage(text) {
     if (!text.trim() || state.loading) return;
 
-    if (!state.apiKey || state.apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
-      state.messages.push({ role: 'system', text: 'Please add your Gemini API key in the src/components/ChatAssistant.js code to enable chat.' });
-      renderMessages();
-      return;
-    }
-
     state.messages.push({ role: 'user', text });
     state.messages.push({ role: 'typing' });
     state.loading = true;
@@ -680,7 +672,7 @@ function ChatAssistant() {
     renderMessages();
 
     try {
-      const reply = await callGemini(state.apiKey, state.messages.filter(m => m.role !== 'typing' && m.role !== 'system'));
+      const reply = await callGemini(state.messages.filter(m => m.role !== 'typing' && m.role !== 'system'));
       state.messages = state.messages.filter(m => m.role !== 'typing');
       state.messages.push({ role: 'bot', text: reply });
     } catch (err) {
@@ -707,16 +699,14 @@ function ChatAssistant() {
   renderSuggestions();
 }
 
-async function callGemini(apiKey, messages) {
+async function callGemini(messages) {
   // Convert to Gemini "contents" format
   const contents = messages.map(m => ({
     role: m.role === 'user' ? 'user' : 'model',
     parts: [{ text: m.text }],
   }));
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
-
-  const res = await fetch(url, {
+  const res = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -727,12 +717,13 @@ async function callGemini(apiKey, messages) {
   });
 
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Gemini API ${res.status}: ${err.slice(0, 120)}`);
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || `Server Error ${res.status}`);
   }
+  
   const data = await res.json();
   const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error('Empty response from Gemini');
+  if (!text) throw new Error('Empty response from server');
   return text.trim();
 }
 

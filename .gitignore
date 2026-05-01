@@ -33,5 +33,4 @@ dist-ssr
 .env.production.local
 
 # Sensitive files / API Keys
-# Ignoring this file specifically because it currently contains your hardcoded Gemini API key
-src/components/ChatAssistant.js
+# No files currently need to be ignored for hardcoded keys!
